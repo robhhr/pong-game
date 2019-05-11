@@ -29,8 +29,8 @@ export default class Paddle {
     return this.score;
   }
 
-  // resetScore() {   STRETCH GOAL
-  //   this.sco
+  // resetScore() {
+  //   this.score = 0;
   // }
 
   moveUp() {

@@ -3,6 +3,8 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
+import Winner from './Winner';
+// import Fire from './Fire';
 
 export default class Game {
   constructor(element, width, height, paused) {
@@ -12,6 +14,8 @@ export default class Game {
     this.paused = false;
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height);
+    // this.fire1 = new Board(this.width, this.height);
+    // this.fire2 = new Board(this.width, this.height);
     const boardMid = (this.height - PADDLE_HEIGHT)/2;
     this.paddle1 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, BOARD_GAP, boardMid, KEYS.p1up, KEYS.p1down);
     const paddle2Gap = this.width - BOARD_GAP - PADDLE_WIDTH;
@@ -19,11 +23,18 @@ export default class Game {
     this.circle = new Ball(this.width, this.height, RADIUS);
     this.score1 = new Score(this.width/2 - 50, 30);
     this.score2 = new Score(this.width/2 + 25, 30);
+    this.winner1 = new Winner(this.width/2 + 25, 80);
+    this.winner2 = new Winner(this.width/2 - 225, 80);
     document.addEventListener("keydown", (event) => {
         if (event.key === KEYS.pauseKey) {
           this.paused = !this.paused;
         }
     });
+    // document.addEventListener("keydown", (event) => {
+    //     if (event.key === KEYS.fireP1) {
+          
+    //     }
+    // })
   }
 
   render() {
@@ -31,7 +42,6 @@ export default class Game {
     if (this.paused) {
       return;
     }
-
     this.gameElement.innerHTML = "";
     let svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttributeNS(null, "width", this.width);
@@ -44,5 +54,14 @@ export default class Game {
     this.circle.render(svg, this.paddle1, this.paddle2);
     this.score1.render(svg, this.paddle1.getScore());
     this.score2.render(svg, this.paddle2.getScore());
-}
+    if (this.paddle1.getScore() >= 5) {
+      this.winner1.setMessage('Player 1 WINS!');
+      this.winner1.render(svg, this.paddle1.getScore(), this.paddle2.getScore());
+      this.paused = true;
+    } else if (this.paddle2.getScore() >= 5) {
+      this.winner2.setMessage('Player 2 WINS!');
+      this.winner2.render(svg, this.paddle1.getScore(), this.paddle2.getScore());
+      this.paused = true;
+  }
+  }
 }

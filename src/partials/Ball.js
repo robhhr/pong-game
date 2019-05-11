@@ -19,8 +19,8 @@ export default class Ball {
         while (this.vy === 0) {
             this.vy = Math.floor(Math.random() * 10 - 5);
         }
-        this.vx = this.direction * (6 - Math.abs(this.vy))/2;
-        this.vy = this.vy/2;
+        this.vx = this.direction * (6 - Math.abs(this.vy))/2.2;
+        this.vy = this.vy/2.2;
     }
     wallCollision() {
         const hitsTop = this.y - this.radius <= 0;
@@ -45,18 +45,20 @@ export default class Ball {
             const p2 = player2.getCoordinates();
             // check for hit with player2
             if (this.x + this.radius >= p2.left &&
+                this.y + this.radius <= p2.right &&
                 this.y >= p2.top &&
                 this.y <= p2.bottom) {
                     this.vx = this.vx * -1;
-                    this.ping.play();
+                    this.ping.play().catch(e => null);
                 }
         } else {
             const p1 = player1.getCoordinates();
             if (this.x - this.radius <= p1.right &&
+                this.x - this.radius >= p1.left &&
                 this.y >= p1.top &&
                 this.y <= p1.bottom) {
                     this.vx = this.vx * -1;
-                    this.ping.play();
+                    this.ping.play().catch(e => null);
                 }
         }
     }

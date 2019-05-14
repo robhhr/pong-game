@@ -1,6 +1,5 @@
 import { SVG_NS } from '../settings';
 import audioFile from "../../public/sounds/pong-03.wav";
-// import { threadId } from 'worker_threads';
 
 export default class Ball {
     constructor(boardWidth, boardHeight, radius) {
@@ -22,10 +21,7 @@ export default class Ball {
         this.vx = this.direction * (6 - Math.abs(this.vy))/2.2;
         this.vy = this.vy/2.2;
     }
-    resetBall() {
-        this.score = 0;
-        this.y = this.initialY;
-      }
+
     wallCollision() {
         const hitsTop = this.y - this.radius <= 0;
         const hitsBottom  = this.y + this.radius >= this.boardHeight;

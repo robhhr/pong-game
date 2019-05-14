@@ -29,9 +29,15 @@ export default class Paddle {
     return this.score;
   }
 
-  // resetScore() {
-  //   this.score = 0;
+  resetScore() {
+    this.score = 0;
+    this.y = this.boardHeight / 2 ;
+  }
+
+  // resetPosition() {
+  //   this.y = this.initialY;
   // }
+  
 
   moveUp() {
       this.y = Math.max(0, this.y - this.speed);

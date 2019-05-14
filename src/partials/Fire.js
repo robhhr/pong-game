@@ -1,9 +1,11 @@
 // import { SVG_NS } from '../settings';
 
 // export default class Fire {
-//     constructor(fireHeight, fireWidth) {
+//     constructor(fireHeight, fireWidth, initialY, initialX) {
 //         this.fireHeight = fireHeight;
 //         this.fireWidth = fireWidth;
+//         this.x = initialX;
+//         this.y = initialY;
 //         this.isFiring = false;
 //     }
 

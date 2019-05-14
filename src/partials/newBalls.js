@@ -1,8 +1,7 @@
 import { SVG_NS } from '../settings';
 import audioFile from "../../public/sounds/pong-03.wav";
-// import { threadId } from 'worker_threads';
 
-export default class Ball {
+export default class Balls {
     constructor(boardWidth, boardHeight, radius) {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
@@ -19,13 +18,9 @@ export default class Ball {
         while (this.vy === 0) {
             this.vy = Math.floor(Math.random() * 10 - 5);
         }
-        this.vx = this.direction * (6 - Math.abs(this.vy))/2.2;
-        this.vy = this.vy/2.2;
+        this.vx = this.direction * (6 - Math.abs(this.vy))/2.5;
+        this.vy = this.vy/2.5;
     }
-    resetBall() {
-        this.score = 0;
-        this.y = this.initialY;
-      }
     wallCollision() {
         const hitsTop = this.y - this.radius <= 0;
         const hitsBottom  = this.y + this.radius >= this.boardHeight;
@@ -67,16 +62,16 @@ export default class Ball {
         }
     }
     render(svg, player1, player2) {
-        let circle = document.createElementNS(SVG_NS, "circle");
-        circle.setAttributeNS(null, "fill", "white");
-        circle.setAttributeNS(null, "cx", this.x);
-        circle.setAttributeNS(null, "cy", this.y)
-        circle.setAttributeNS(null, "r", this.radius);
+        let balls = document.createElementNS(SVG_NS, "circle");
+        balls.setAttributeNS(null, "fill", "yellow");
+        balls.setAttributeNS(null, "cx", this.x);
+        balls.setAttributeNS(null, "cy", this.y)
+        balls.setAttributeNS(null, "r", this.radius);
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
         this.wallCollision();
         this.goalCollision(player1,player2);
         this.paddleCollision(player1, player2);
-        svg.appendChild(circle);
+        svg.appendChild(balls);
     }
 }

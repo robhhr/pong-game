@@ -1,7 +1,3 @@
-<h3 align="center">
-  <img src="http://designedgecanada.com/wp-content/uploads/2018/03/b9e11f0d-e030-447e-808a-3d0f6ed64084-620x130.png" alt="RED Academy" width="200">
-</h3>
-
 ### Pong Game
 
 <p>The game consists in the rebuild of the Classic Pong Game. The game starts with one ball and after 3 points, a new ball will appear with more speed and smaller to make the game more challenging.</p>

@@ -14,6 +14,12 @@ The languages used were:
 - CSS
 - JavaScript
 
+### Instructions
+
+P1 Moves: A & Z
+P2 Moves: &#8593 & &#8595
+Pause game: SPACE Key
+
 # Pong Game Starter
 
 A starter project for a basic pong game using SVGs.
